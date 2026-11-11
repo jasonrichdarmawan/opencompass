@@ -30,7 +30,7 @@ for _ruler_dataset in ruler_256k_datasets:
     _ruler_dataset['num_samples'] = 10
     if os.path.isdir(_ruler_tokenizer):
         _ruler_dataset['tokenizer_model'] = _ruler_tokenizer
-        _ruler_dataset['max_seq_length'] = 261632
+        _ruler_dataset['max_seq_length'] = 250000
     else:
         _ruler_dataset['max_seq_length'] = 250000
 del _ruler_dataset
