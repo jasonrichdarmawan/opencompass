@@ -23,7 +23,16 @@ from opencompass.utils.code_execution import type_aware_equal
 try:
     from pyext import RuntimeModule
 except ImportError:
-    RuntimeModule = None
+    import types
+
+    class RuntimeModule:
+        """Minimal pyext.RuntimeModule replacement for Python 3.12+."""
+
+        @staticmethod
+        def from_string(name, doc, source):
+            module = types.ModuleType(name, doc)
+            exec(source, module.__dict__)
+            return module
 
 
 def truncatefn(s, length=300):
