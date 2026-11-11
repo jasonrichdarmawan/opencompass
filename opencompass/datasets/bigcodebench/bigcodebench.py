@@ -194,11 +194,12 @@ class BigCodeBenchEvaluator(BaseEvaluator):
 
         while True:
             try:
+                httpx_kwargs = dict(timeout=httpx.Timeout(100.0))
+                if proxies:
+                    httpx_kwargs['proxies'] = proxies
                 eval_client = Client(self.remote_execute_api,
                                      headers=self.headers,
-                                     httpx_kwargs=dict(
-                                         proxies=proxies,
-                                         timeout=httpx.Timeout(100.0)))
+                                     httpx_kwargs=httpx_kwargs)
                 results, pass_at_k = eval_client.predict(
                     split=self.eval_type,
                     samples=handle_file(submitted_contents_path),
