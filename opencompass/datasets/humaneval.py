@@ -139,7 +139,7 @@ class HumanEvalEvaluator(BaseEvaluator):
                 evaluate_functional_correctness,
                 out_dir,
                 self.k,
-                n_workers=4,
+                n_workers=1,
                 timeout=3.0,
                 problem_file=HUMAN_EVAL,
                 ignore_incomplete=self.ignore_incomplete)
